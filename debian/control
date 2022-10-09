@@ -1,0 +1,29 @@
+Source: kasumi
+Section: x11
+Priority: optional
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Homepage: https://osdn.net/projects/kasumi/
+Build-Depends:
+ debhelper-compat (= 13),
+ gettext,
+ libanthy-dev,
+ libgtk2.0-dev,
+Standards-Version: 4.6.0
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/debian/kasumi
+Vcs-Git: https://salsa.debian.org/debian/kasumi.git
+
+Package: kasumi
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Recommends:
+ anthy,
+Description: Simple dictionary utility for Anthy
+ Kasumi is a personal dictionary management tool for Anthy.
+ Anthy is a Japanese input method to convert Hiragana text to
+ Kana Kanji mixed text.
+ .
+ Featuring add words, edit words, delete words, search words
+ and so on.

@@ -1,0 +1,274 @@
+kasumi (2.5-10) unstable; urgency=high
+
+  * Team upload.
+  * debian/: Apply wrap-and-sort -abst.
+  * Refresh packaging:
+    + Bump Standards-Version to 4.6.0.
+    + Bump debhelper compat to v13.
+  * debian/rules: Force std=c++14 to fix ftbfs with gcc 11.
+    (Closes: #984077)
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 15 Oct 2021 13:34:25 -0400
+
+kasumi (2.5-9) unstable; urgency=medium
+
+  * Team upload.
+  * New maintainer: Debian Input Method Team.  Closes: #900216
+  * Fix breakage due to anthy version string.  Closes: #885918
+  * Update manpage with Fedora patch.
+  * Update upstream URL with https://osdn.net/projects/kasumi
+
+ -- Osamu Aoki <osamu@debian.org>  Mon, 16 Jul 2018 11:51:12 +0900
+
+kasumi (2.5-8) unstable; urgency=medium
+
+  * QA upload.
+  * d/control:
+    + wrap-and-sort
+    + Since the package is orphaned, remove the Uploaders field.
+    + Move the Vcs-* fields to salsa.debian.org.
+    + Bump Standards-Version to 4.1.4.
+  * d/menu: Drop, as it's deprecated since Policy 3.9.8.
+  * Bump debhelper compat level to 11.
+    + Drop explicit autoreconf, now default.
+  * Rename patches and update descriptions so they lose any mention of dpatch.
+  * d/rules:
+    + Drop misspelled override_dh_build.  It has never been run in the last 9
+      years, so it's most likely not needed anyway.
+    + Use dpkg-buildflags to inject LDFLAGS instead of using it directly.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Sun, 27 May 2018 19:18:04 +0200
+
+kasumi (2.5-7) unstable; urgency=medium
+
+  * control: use publicly accessible Vcs-Git URI
+  * control: orphan the package
+    I feel that I can no longer justify the effort to package for Debian
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Wed, 18 Apr 2018 19:49:29 +0800
+
+kasumi (2.5-6) unstable; urgency=medium
+
+  * control: update git URIs
+  * copyright: update copyright to 2018
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Sun, 15 Apr 2018 23:59:00 +0800
+
+kasumi (2.5-5) unstable; urgency=low
+
+  * fix error in keywords-syntax in desktop file
+    Many thanks to Anders Jonsson for pointing this out
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Sun, 16 Mar 2014 13:27:39 +0800
+
+kasumi (2.5-4) unstable; urgency=low
+
+  * use dh-autoreconf to update the build system. Closes: #727912
+  * patches: update desktop file patch to add some keywords
+  * control: bump standard to 3.9.5.  No further changes.
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Sat, 22 Feb 2014 17:22:05 +0800
+
+kasumi (2.5-3) unstable; urgency=low
+
+  * control:
+    - drop obsolete DMUA field
+    - switch roles of maintainer and uploader between Ikuya-san and me
+    - bump standard to 3.9.4
+  * copyright: update to 2013
+  * bump build process to dh9
+  * rules: reorder option and sequence in line with latest dh convention
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Mon, 10 Jun 2013 00:49:26 +0200
+
+kasumi (2.5-2) unstable; urgency=low
+
+  * move to DebSrc3.0 and drop thusly obsoleted quilt-specific stuff
+  * debian/rules:
+    - streamline dh_build override
+    - drop installchangelogs override
+    - readd call to autotools-dev lost during move to dh7-based rules file
+  * debian/watch: make sf.jp watch file more generic
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Mon, 31 May 2010 10:13:38 +0900
+
+kasumi (2.5-1) unstable; urgency=low
+
+  * new upstream release
+  * debian/control:
+    - add ${misc:Depends} to run-time dependencies
+    - drop xsltproc and docbook-xsl from build-time dependencies
+    - add VCS-fields
+  * debian/copyright: update and augment copyright information
+  * debian/menu: move menu section to "Applications/Text"
+  * debian/patches:
+    - 10_validate_kasumi.desktop.dpatch to validate desktop file
+    - 20_update_intl.dpatch to update gettext-related building
+  * debian/rules: radically simplify (LP: 403189)
+  * debian/watch: add watch file that can at least partially deal with
+    the braindead format from sourceforge.jp
+  * add debian/README.source
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Wed, 03 Feb 2010 03:24:13 +0100
+
+kasumi (2.4-1) unstable; urgency=low
+
+  * new upstream release, push back from Ubuntu Jaunty. (Closes: #483208)
+  * debian/control
+    - drop Tagoh-san from uploaders.  (Closes: #508206)
+    - add myself to uploaders
+    - add Homepage
+  * update standards to 3.8.2
+    - update to debhelper 5
+    - use config.sub and config.guess from host instead of patching
+    - better error handling for distclean
+
+ -- Rolf Leggewie <foss@rolf.leggewie.biz>  Tue, 21 Jul 2009 19:43:54 +0200
+
+kasumi (2.4-0ubuntu1) jaunty; urgency=low
+
+  * New upstream release
+  * debian/patches/00list: removed 04_gcc4.3fix and 05_patch-local-kasumidic.
+    Already included by upstream.
+
+ -- Ikuya Awashiro <ikuya@fruitsbasket.info>  Sat, 14 Feb 2009 15:29:10 +0000
+
+kasumi (2.2-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/patches/04_gcc4.3fix.dpatch: Updated with patch
+    from Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>. (Closes: #455273)
+
+ -- Marc 'HE' Brockschmidt <he@debian.org>  Sun, 16 Mar 2008 17:34:38 +0100
+
+kasumi (2.2-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/04_gcc4.3fix.dpatch: added.
+    Closes: Bug#417266: FTBFS with GCC 4.3: missing #includes
+    Thanks to Martin Michlmayr <tbm@cyrius.com>.
+  * debian/patches/05_patch-local-kasumidic.dpatch: added.
+    Thanks to dtana.
+    from http://kasumi.sourceforge.jp/index.php?%A5%D0%A5%B0%CA%F3%B9%F0%2F95
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sun, 03 Jun 2007 01:46:09 +0900
+
+kasumi (2.1-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/02_gcc4.1fix.dpatch: removed. fixed in upstream.
+  * debian/patches/03_kasumi-2.0.1-errorcode.dpatch: ditto.
+  * debian/rules: enable "make update-gmo".
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sun, 15 Oct 2006 01:02:27 +0900
+
+kasumi (2.0.1-3) unstable; urgency=low
+
+  * debian/patches/03_kasumi-2.0.1-errorcode.dpatch: added.
+    from Fedora Core 5 written by Akira Tagoh.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sat, 30 Sep 2006 16:26:53 +0900
+
+kasumi (2.0.1-2) unstable; urgency=low
+
+  * debian/control: added libanthy-dev to Build-Depends.
+
+ -- Akira TAGOH <tagoh@debian.org>  Sun,  2 Jul 2006 14:15:58 +0900
+
+kasumi (2.0.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Mon, 26 Jun 2006 22:25:16 +0900
+
+kasumi (2.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Standards-Version bumped to 3.7.2 (no changes requied)
+  * debian/patches/02_gcc4.1fix.dpatch: updated another patch.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sun, 18 Jun 2006 20:49:58 +0900
+
+kasumi (1.0-2) unstable; urgency=low
+
+  * debian/patches/02_gcc4.1fix.dpatch: added.
+     Closes: Bug#358284 (FTBFS with G++ 4.1: friends not declared)
+     Thanks to Martin Michlmayr <tbm@cyrius.com>.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Wed, 22 Mar 2006 15:08:29 +0900
+
+kasumi (1.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Tue,  6 Dec 2005 16:30:07 +0900
+
+kasumi (0.10-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Mon, 19 Sep 2005 23:25:30 +0900
+
+kasumi (0.9-2) unstable; urgency=low
+
+  * closes: Bug#323403 (ITP).
+  * Bump Standards-Version to 3.6.2 (no changes required).
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Fri, 22 Jul 2005 17:36:40 +0900
+
+kasumi (0.9-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/00list: delete 01_fix_typo.dpatch.
+    This fix contains this release.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Mon, 30 May 2005 09:34:59 +0000
+
+kasumi (0.8-3) unstable; urgency=low
+
+  * debian/kasumi.xml: add manpage.
+  * debian/rules: ditto.
+  * debian/control: ditto.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sun, 22 May 2005 23:05:54 +0900
+
+kasumi (0.8-2) unstable; urgency=low
+
+  * debian/doc: delete.
+  * debian/control: add autotools-dev, dpatch delete autoconf,
+    pkg-config to Build-depends.
+  * debian/rules: to use dpatch.
+  * debian/patches/01_fix_typo.dpatch: fixed typo in main.cxx.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Thu, 19 May 2005 16:44:56 +0900
+
+kasumi (0.8-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Sat,  9 Apr 2005 05:24:46 +0000
+
+kasumi (0.7-2) unstable; urgency=low
+
+  * debian/docs: delete NEWS
+  * debian/control: improve Description
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Wed,  2 Feb 2005 21:43:24 +0900
+
+kasumi (0.7-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Fri, 31 Dec 2004 16:38:40 +0900
+
+kasumi (0.6-2) unstable; urgency=low
+
+  * Changed debian/control file to add Build-Depends and Recommends
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Thu,  9 Dec 2004 11:41:27 +0900
+
+kasumi (0.6-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Ikuya Awashiro <ikuya@oooug.jp>  Tue,  7 Dec 2004 18:36:31 +0900

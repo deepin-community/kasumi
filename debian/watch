@@ -1,0 +1,8 @@
+# Compulsory line, this is a version 3 file
+version=3
+
+opts="downloadurlmangle=s/sourceforge/iij.dl.sourceforge/;s/downloads\///;s/projects\///;s/gz\//gz/,\
+uversionmangle=s/-beta/~beta/;s/-rc/~rc/;s/-preview/~preview/" \
+ http://sourceforge.jp/projects/kasumi/releases/ \
+ /projects/kasumi/downloads/.*/kasumi-(.*)\.tar.gz/ debian uupdate
+

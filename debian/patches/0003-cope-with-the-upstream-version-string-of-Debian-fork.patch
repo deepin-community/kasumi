@@ -1,0 +1,78 @@
+From: Osamu Aoki <osamu@debian.org>
+Date: Mon, 16 Jul 2018 10:16:26 +0900
+Subject: cope with the upstream version string of Debian forked anthy
+
+Signed-off-by: Osamu Aoki <osamu@debian.org>
+---
+ KasumiDic.cxx | 42 ++++++++++++++++++++++++++----------------
+ 1 file changed, 26 insertions(+), 16 deletions(-)
+
+diff --git a/KasumiDic.cxx b/KasumiDic.cxx
+index 291123b..aeeedae 100644
+--- a/KasumiDic.cxx
++++ b/KasumiDic.cxx
+@@ -74,8 +74,30 @@ void KasumiDic::load(KasumiConfiguration *conf)
+   const int FREQ_LBOUND = conf->getPropertyValueByInt("MinFrequency");  
+   const int FREQ_UBOUND = conf->getPropertyValueByInt("MaxFrequency");
+ 
+-  int anthy_version = atoi(anthy_get_version_string());
+-  assert(anthy_version != 0);
++//  "anthy" on Debian uses forked upstream source based on 9100h-25
++//  with its upstream version numbered as 0.3 on buster/sid as of 2018/July
++//  while handling version order issue with "epoch" trick.
++//
++//  Debian anthy packages as of 2018/July
++//    o-o-stable:  9100h-16  wheezy
++//    oldstable:   9100h-24  jessie
++//    stable:      9100h-25  stretch
++//    testing:   1:0.3-7     buster
++//    unstable:  1:0.3-7     sid
++//
++//  "kasumi" assumes version number is like 9100 and address issues with very
++//  old version before 7716.
++//  When conversting version string to number, "kasumi" assumes it is an
++//  integer which can be conversted by atoi().  Also, "kasumi" performed
++//  assertion operation to check this atoi() produced real number other than
++//  0.  With the recent upstream version of Debian forked source, version 0.3
++//  becomes 0 and its assertion fails as reported on BTS: #885918
++//    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=885918
++//
++//  Since pre-7716 version of "anthy" is non-existing, it is most simple to
++//  remove code addressing re-7716 version of "anthy".  In order to keep this
++//  somewhat invasive change, I keep the pertinent lines commented out by this
++//  patch.
+ 
+   try{
+       if(anthy_priv_dic_select_first_entry() == -1){
+@@ -84,15 +106,9 @@ void KasumiDic::load(KasumiConfiguration *conf)
+       }
+       else if(anthy_priv_dic_select_first_entry() == -3)
+       {
+-	  if(anthy_version >= 7716)
+-	  {
+-	      // do not throw exception in the case that this doesn't fail to
+-	      // read the private dictionary but the dictionary containes
+-	      // no word. This case happens if the version of anthy is less
+-	      // than 7714.
++// always through exception since anthy is post 7716 version.
+ 	      string message = string("Failed to read private dictionary. This problem might be a problem of Anthy.\n");
+ 	      throw KasumiException(message, STDERR, KILL);
+-	  }
+       }
+ 
+       char sound[BUFFER_SIZE], wt[BUFFER_SIZE], spelling[BUFFER_SIZE];
+@@ -113,13 +129,7 @@ void KasumiDic::load(KasumiConfiguration *conf)
+ 	      KasumiWord *newWord = KasumiWord::createNewWord(conf);
+ 
+ 	      newWord->setSound(string(sound));
+-	      if (anthy_version < 7710 && spelling[0] == ' ') {
+-		      // Measures against a defect of anthy.
+-		      // "anthy_priv_dic_get_word()" function returns
+-		      // a string whose first character is an unwated
+-		      // white space.
+-		      newWord->setSpelling(string(spelling+1));
+-	      } else
++// anthy is post 7710 version.
+ 		  newWord->setSpelling(string(spelling));
+ 	      newWord->setFrequency(freq);
+ 	      newWord->setWordType(KasumiWordType::getWordTypeFromCannaTab(string(wt)));

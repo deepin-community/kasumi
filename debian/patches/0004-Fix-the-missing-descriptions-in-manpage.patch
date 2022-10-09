@@ -1,0 +1,42 @@
+From: Akira TAGOH <tagoh@redhat.com>
+Date: Fri, 31 Aug 2012 12:00:00 +0900
+Subject: Fix the missing descriptions in manpage
+
+Taken from Fedora patch
+
+* Fri Aug 31 2012 Akira TAGOH <tagoh@redhat.com> 2.5-9
+  - Fix the missing descriptions for some options in --help (#853099)
+
+Building with current anthy will enable these options. (July/2018)
+
+Signed-off-by: Osamu Aoki <osamu@debian.org>
+---
+ kasumi.1 | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/kasumi.1 b/kasumi.1
+index f3ff62b..d48d85e 100644
+--- a/kasumi.1
++++ b/kasumi.1
+@@ -51,6 +51,10 @@ Run Kasumi in Manage mode\&. You may abbreviate this option
+ \fB\-a\fR \fB\-\-add\fR
+ Run Kasumi in Add mode\&.
+ 
++.TP
++\fB\-e\fR \fB\-\-exclusive\fR
++Run Kasumi in Exclusive mode\&.
++
+ .TP
+ \fB\-\-sound val\fR
+ Set default sound entry (only in Add mode)
+@@ -71,6 +75,10 @@ Import selected text as a spelling
+ \fB\-I\fR \fB\-\-ignore\fR
+ Ignore selected text
+ 
++.TP
++\fB\-E\fR \fB\-\-eucjp\fR
++Use EUC-JP encoding for dictionary
++
+ .SH "AUTHOR"
+ 
+ .PP
