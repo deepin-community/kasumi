@@ -1,3 +1,9 @@
+kasumi (2.5-10deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Thu, 19 Sep 2024 22:50:32 +0800
+
 kasumi (2.5-10) unstable; urgency=high
 
   * Team upload.
